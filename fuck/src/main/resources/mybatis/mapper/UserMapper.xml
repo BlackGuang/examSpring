@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imooc.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.imooc.vo.User" >
+        <id column="userID" property="userID" jdbcType="BIGINT" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="power" property="power" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT *
+        FROM user
+        WHERE userID= #{userID}
+    </select>
+
+    <select id="getUserbyName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT *
+        FROM user
+        WHERE userName = #{name}
+    </select>
+
+    <insert id="insert" parameterType="com.imooc.vo.User">
+        INSERT INTO
+        user VALUE (#{userID}, #{username},#{password},#{mail})
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        DELETE FROM
+        user
+        WHERE userID= #{userID}
+    </delete>
+</mapper>
